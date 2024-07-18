@@ -1,0 +1,45 @@
+extend type Query {
+    employees: [EmployeeEdge]
+}
+
+extend type Mutation {
+    createEmployee(input: CreateEmployeeInput!): CreateEmployeePayload
+    updateEmployee(input: UpdateEmployeeInput!): UpdateEmployeePayload
+    deleteEmployee(input: DeleteEmployeeInput!): DeleteEmployeePayload
+}
+
+type EmployeeEdge {
+    node: Employee
+}
+
+type Employee implements Node {
+    id: ID!
+    name: String
+}
+
+input CreateEmployeeInput {
+    name: String
+    departmentId: ID
+}
+
+type CreateEmployeePayload {
+    node: Employee
+}
+
+input UpdateEmployeeInput {
+    id: ID!
+    name: String
+    departmentId: ID
+}
+
+type UpdateEmployeePayload {
+    node: Employee
+}
+
+input DeleteEmployeeInput {
+    id: ID!
+}
+
+type DeleteEmployeePayload {
+    id: ID!
+}

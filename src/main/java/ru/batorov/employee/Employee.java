@@ -1,12 +1,11 @@
-package ru.batorov.department;
+package ru.batorov.employee;
 
 import jakarta.persistence.*;
-import java.util.Set;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import lombok.experimental.SuperBuilder;
 import ru.batorov.common.persistence.Base;
-import ru.batorov.employee.Employee;
+import ru.batorov.department.Department;
 
 @Getter
 @Setter
@@ -16,9 +15,9 @@ import ru.batorov.employee.Employee;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
 @Entity
-public class Department extends Base {
+public class Employee extends Base {
   private String name;
 
-  @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
-  private Set<Employee> employees;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Department department;
 }
