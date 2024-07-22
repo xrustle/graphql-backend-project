@@ -1,5 +1,5 @@
 extend type Query {
-    departments: [DepartmentEdge]
+    departments: DepartmentConnection
 }
 
 extend type Mutation {
@@ -10,6 +10,10 @@ extend type Mutation {
 
 type DepartmentEdge {
     node: Department
+}
+
+type DepartmentConnection {
+    edges: [DepartmentEdge]
 }
 
 type Department implements Node {

@@ -1,7 +1,7 @@
 package ru.batorov.employee;
 
+import graphql.relay.Connection;
 import graphql.schema.DataFetchingEnvironment;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.*;
 import org.springframework.stereotype.Controller;
@@ -14,12 +14,12 @@ import ru.batorov.common.payload.SaveMutationPayload;
 @RequiredArgsConstructor
 public class EmployeeController {
   private final EmployeeService employeeService;
-  private final EmployeeRepository employeeRepository;
+  private final EmployeeDataFetcher employeeDataFetcher;
   private final EmployeeMapper employeeMapper;
 
   @QueryMapping
-  public List<SaveMutationPayload<Employee>> employees() {
-    return employeeRepository.findAll().stream().map(SaveMutationPayload::new).toList();
+  public Connection<Employee> employees(DataFetchingEnvironment environment) {
+    return employeeDataFetcher.get(environment);
   }
 
   @MutationMapping

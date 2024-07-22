@@ -1,5 +1,5 @@
 extend type Query {
-    employees: [EmployeeEdge]
+    employees: EmployeeConnection
 }
 
 extend type Mutation {
@@ -10,6 +10,10 @@ extend type Mutation {
 
 type EmployeeEdge {
     node: Employee
+}
+
+type EmployeeConnection {
+    edges: [EmployeeEdge]
 }
 
 type Employee implements Node {
