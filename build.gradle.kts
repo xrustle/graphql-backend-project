@@ -58,6 +58,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework:spring-webflux")
     testImplementation("org.springframework.graphql:spring-graphql-test")
+    testImplementation("org.testcontainers:postgresql")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

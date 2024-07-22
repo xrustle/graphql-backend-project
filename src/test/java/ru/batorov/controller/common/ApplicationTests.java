@@ -1,4 +1,4 @@
-package ru.batorov.controller;
+package ru.batorov.controller.common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

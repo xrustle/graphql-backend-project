@@ -1,0 +1,8 @@
+mutation updateDepartment($input: UpdateDepartmentInput!) {
+    updateDepartment(input: $input) {
+        node {
+            id
+            name
+        }
+    }
+}
