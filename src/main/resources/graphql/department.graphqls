@@ -19,6 +19,7 @@ type DepartmentConnection {
 type Department implements Node {
     id: ID!
     name: String
+    employees: EmployeeConnection
 }
 
 input CreateDepartmentInput {
