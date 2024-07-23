@@ -1,5 +1,7 @@
 import org.gradle.plugins.ide.idea.model.IdeaLanguageLevel
 
+val graphqlJavaExtendedScalarsVersion = "22.0"
+
 plugins {
     java
     idea
@@ -46,6 +48,7 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
 
+    implementation("com.graphql-java:graphql-java-extended-scalars:$graphqlJavaExtendedScalarsVersion")
     implementation("org.springframework.boot:spring-boot-starter-graphql")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")

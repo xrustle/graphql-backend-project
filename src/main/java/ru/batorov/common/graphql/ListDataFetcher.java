@@ -4,6 +4,7 @@ import graphql.relay.*;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import lombok.extern.slf4j.Slf4j;
+import ru.batorov.common.OrderByConverter;
 import ru.batorov.common.helper.RelayHelper;
 import ru.batorov.common.persistence.Base;
 import ru.batorov.common.persistence.BaseRepository;
@@ -18,7 +19,8 @@ public class ListDataFetcher<E extends Base, R extends BaseRepository<E>>
   }
 
   public Connection<E> get(DataFetchingEnvironment environment) {
-    var nodes = repository.findAll();
+    var sort = OrderByConverter.of(environment.getArgument("orderBy")).toSort();
+    var nodes = repository.findAll(sort);
     var pageInfo = new DefaultPageInfo(null, null, false, false);
     var edges =
         nodes.stream()
@@ -30,6 +32,6 @@ public class ListDataFetcher<E extends Base, R extends BaseRepository<E>>
                 })
             .toList();
 
-    return new DefaultConnection<>(edges, pageInfo);
+    return new ExtendedConnection<>(edges, pageInfo, edges.size());
   }
 }

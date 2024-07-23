@@ -1,5 +1,12 @@
+scalar Long
+
 interface Node {
     id: ID!
+}
+
+enum OrderDirection {
+    ASC
+    DESC
 }
 
 type Query {

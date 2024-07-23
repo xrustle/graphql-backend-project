@@ -1,5 +1,7 @@
 extend type Query {
-    employees: EmployeeConnection
+    employees(
+        orderBy: [EmployeeOrder!]
+    ): EmployeeConnection
 }
 
 extend type Mutation {
@@ -14,12 +16,18 @@ type EmployeeEdge {
 
 type EmployeeConnection {
     edges: [EmployeeEdge]
+    totalCount: Int!
 }
 
 type Employee implements Node {
     id: ID!
     name: String
     department: Department
+}
+
+input EmployeeOrder {
+    id: OrderDirection
+    name: OrderDirection
 }
 
 input CreateEmployeeInput {
