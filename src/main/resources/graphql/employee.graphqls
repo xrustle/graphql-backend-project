@@ -1,5 +1,9 @@
 extend type Query {
     employees(
+        first: Int
+        after: String
+        last: Int
+        before: String
         orderBy: [EmployeeOrder!]
     ): EmployeeConnection
 }
@@ -11,11 +15,13 @@ extend type Mutation {
 }
 
 type EmployeeEdge {
+    cursor: String!
     node: Employee
 }
 
 type EmployeeConnection {
     edges: [EmployeeEdge]
+    pageInfo: PageInfo!
     totalCount: Int!
 }
 
@@ -36,6 +42,7 @@ input CreateEmployeeInput {
 }
 
 type CreateEmployeePayload {
+    cursor: String
     node: Employee
 }
 
@@ -46,6 +53,7 @@ input UpdateEmployeeInput {
 }
 
 type UpdateEmployeePayload {
+    cursor: String
     node: Employee
 }
 

@@ -1,5 +1,9 @@
 extend type Query {
     departments(
+        first: Int
+        after: String
+        last: Int
+        before: String
         orderBy: [DepartmentOrder!]
     ): DepartmentConnection
 }
@@ -11,11 +15,13 @@ extend type Mutation {
 }
 
 type DepartmentEdge {
+    cursor: String!
     node: Department
 }
 
 type DepartmentConnection {
     edges: [DepartmentEdge]
+    pageInfo: PageInfo!
     totalCount: Int!
 }
 
@@ -23,6 +29,10 @@ type Department implements Node {
     id: ID!
     name: String
     employees(
+        first: Int
+        after: String
+        last: Int
+        before: String
         orderBy: [EmployeeOrder!]
     ): EmployeeConnection
 }
@@ -37,6 +47,7 @@ input CreateDepartmentInput {
 }
 
 type CreateDepartmentPayload {
+    cursor: String
     node: Department
 }
 
@@ -46,6 +57,7 @@ input UpdateDepartmentInput {
 }
 
 type UpdateDepartmentPayload {
+    cursor: String
     node: Department
 }
 

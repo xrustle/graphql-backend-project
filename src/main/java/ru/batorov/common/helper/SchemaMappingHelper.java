@@ -25,6 +25,7 @@ public class SchemaMappingHelper {
     environmentBuilder.arguments(arguments);
     var repository = repositoryHelper.getRepository(nestedRecordsClass);
 
-    return new ListDataFetcher<>(repository).get(environmentBuilder.build());
+    return new ListDataFetcher<>(repository, nestedRecordsClass.getName())
+        .get(environmentBuilder.build());
   }
 }

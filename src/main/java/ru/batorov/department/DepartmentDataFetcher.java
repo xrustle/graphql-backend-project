@@ -6,6 +6,6 @@ import ru.batorov.common.graphql.ListDataFetcher;
 @Service
 public class DepartmentDataFetcher extends ListDataFetcher<Department, DepartmentRepository> {
   public DepartmentDataFetcher(DepartmentRepository departmentRepository) {
-    super(departmentRepository);
+    super(departmentRepository, Department.class.getName());
   }
 }
