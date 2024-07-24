@@ -1,4 +1,4 @@
-package ru.batorov.common;
+package ru.batorov.common.graphql;
 
 import java.util.ArrayList;
 import java.util.List;

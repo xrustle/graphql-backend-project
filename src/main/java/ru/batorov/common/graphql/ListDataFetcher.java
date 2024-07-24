@@ -8,7 +8,7 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import ru.batorov.common.OrderByConverter;
+import org.springframework.data.jpa.domain.Specification;
 import ru.batorov.common.helper.RelayHelper;
 import ru.batorov.common.persistence.Base;
 import ru.batorov.common.persistence.BaseRepository;
@@ -27,9 +27,10 @@ public class ListDataFetcher<E extends Base, R extends BaseRepository<E>>
   public Connection<E> get(DataFetchingEnvironment environment) {
     Integer first = environment.getArgument("first");
     Integer last = environment.getArgument("last");
+    Specification<E> specification = FilterSpecification.of(environment.getArgument("filter"));
     var sort = OrderByConverter.of(environment.getArgument("orderBy")).toSort();
     var pageRequest = getPageRequest(environment, first, last, sort);
-    var page = repository.findAll(pageRequest);
+    var page = repository.findAll(specification, pageRequest);
     var edges = getEdges(page.getContent(), pageRequest.getOffset());
     var pageInfo =
         new DefaultPageInfo(

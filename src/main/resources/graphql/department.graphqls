@@ -4,6 +4,7 @@ extend type Query {
         after: String
         last: Int
         before: String
+        filter: DepartmentFilter
         orderBy: [DepartmentOrder!]
     ): DepartmentConnection
 }
@@ -29,6 +30,7 @@ type Department implements Node {
     id: ID!
     name: String
     employees(
+        filter: EmployeeFilter
         first: Int
         after: String
         last: Int
@@ -40,6 +42,11 @@ type Department implements Node {
 input DepartmentOrder {
     id: OrderDirection
     name: OrderDirection
+}
+
+input DepartmentFilter {
+    id: LongFilter
+    name: StringFilter
 }
 
 input CreateDepartmentInput {

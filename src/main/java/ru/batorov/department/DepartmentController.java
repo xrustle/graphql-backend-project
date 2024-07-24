@@ -28,7 +28,7 @@ public class DepartmentController {
   @SchemaMapping
   public Connection<Employee> employees(
       Department department, DataFetchingEnvironment environment) {
-    return schemaMappingHelper.getNestedConnection(environment, Employee.class);
+    return schemaMappingHelper.getNestedConnection(department, environment, Employee.class);
   }
 
   @MutationMapping

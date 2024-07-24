@@ -4,6 +4,7 @@ extend type Query {
         after: String
         last: Int
         before: String
+        filter: EmployeeFilter
         orderBy: [EmployeeOrder!]
     ): EmployeeConnection
 }
@@ -34,6 +35,11 @@ type Employee implements Node {
 input EmployeeOrder {
     id: OrderDirection
     name: OrderDirection
+}
+
+input EmployeeFilter {
+    id: LongFilter
+    name: StringFilter
 }
 
 input CreateEmployeeInput {

@@ -9,6 +9,17 @@ enum OrderDirection {
     DESC
 }
 
+input LongFilter {
+    eq: Long
+    in: [Long]
+}
+
+input StringFilter {
+    eq: String
+    in: [String]
+    like: String
+}
+
 type PageInfo {
     hasNextPage: Boolean!
     hasPreviousPage: Boolean!
