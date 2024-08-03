@@ -1,0 +1,39 @@
+scalar Long
+
+interface Node {
+    id: ID!
+}
+
+enum OrderDirection {
+    ASC
+    DESC
+}
+
+input LongFilter {
+    eq: Long
+    in: [Long]
+}
+
+input StringFilter {
+    eq: String
+    in: [String]
+    like: String
+}
+
+type PageInfo {
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+    endCursor: String
+}
+
+type Query {
+    node(id: ID!): Node
+}
+
+type Mutation {}
+
+schema {
+    query: Query
+    mutation: Mutation
+}

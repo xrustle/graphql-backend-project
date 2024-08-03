@@ -1,0 +1,77 @@
+extend type Query {
+    departments(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        filter: DepartmentFilter
+        orderBy: [DepartmentOrder!]
+    ): DepartmentConnection
+}
+
+extend type Mutation {
+    createDepartment(input: CreateDepartmentInput!): CreateDepartmentPayload
+    updateDepartment(input: UpdateDepartmentInput!): UpdateDepartmentPayload
+    deleteDepartment(input: DeleteDepartmentInput!): DeleteDepartmentPayload
+}
+
+type DepartmentEdge {
+    cursor: String!
+    node: Department
+}
+
+type DepartmentConnection {
+    edges: [DepartmentEdge]
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type Department implements Node {
+    id: ID!
+    name: String
+    employees(
+        filter: EmployeeFilter
+        first: Int
+        after: String
+        last: Int
+        before: String
+        orderBy: [EmployeeOrder!]
+    ): EmployeeConnection
+}
+
+input DepartmentOrder {
+    id: OrderDirection
+    name: OrderDirection
+}
+
+input DepartmentFilter {
+    id: LongFilter
+    name: StringFilter
+}
+
+input CreateDepartmentInput {
+    name: String
+}
+
+type CreateDepartmentPayload {
+    cursor: String
+    node: Department
+}
+
+input UpdateDepartmentInput {
+    id: ID!
+    name: String
+}
+
+type UpdateDepartmentPayload {
+    cursor: String
+    node: Department
+}
+
+input DeleteDepartmentInput {
+    id: ID!
+}
+
+type DeleteDepartmentPayload {
+    id: ID!
+}

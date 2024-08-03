@@ -1,0 +1,8 @@
+mutation createDepartment($input: CreateDepartmentInput!) {
+    createDepartment(input: $input) {
+        node {
+            id
+            name
+        }
+    }
+}

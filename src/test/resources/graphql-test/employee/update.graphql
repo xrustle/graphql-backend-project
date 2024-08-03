@@ -1,0 +1,8 @@
+mutation updateEmployee($input: UpdateEmployeeInput!) {
+    updateEmployee(input: $input) {
+        node {
+            id
+            name
+        }
+    }
+}

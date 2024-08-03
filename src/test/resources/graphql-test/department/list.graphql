@@ -1,0 +1,10 @@
+query {
+    departments {
+        edges {
+            node {
+                id
+                name
+            }
+        }
+    }
+}

@@ -1,0 +1,72 @@
+extend type Query {
+    employees(
+        first: Int
+        after: String
+        last: Int
+        before: String
+        filter: EmployeeFilter
+        orderBy: [EmployeeOrder!]
+    ): EmployeeConnection
+}
+
+extend type Mutation {
+    createEmployee(input: CreateEmployeeInput!): CreateEmployeePayload
+    updateEmployee(input: UpdateEmployeeInput!): UpdateEmployeePayload
+    deleteEmployee(input: DeleteEmployeeInput!): DeleteEmployeePayload
+}
+
+type EmployeeEdge {
+    cursor: String!
+    node: Employee
+}
+
+type EmployeeConnection {
+    edges: [EmployeeEdge]
+    pageInfo: PageInfo!
+    totalCount: Int!
+}
+
+type Employee implements Node {
+    id: ID!
+    name: String
+    department: Department
+}
+
+input EmployeeOrder {
+    id: OrderDirection
+    name: OrderDirection
+}
+
+input EmployeeFilter {
+    id: LongFilter
+    name: StringFilter
+}
+
+input CreateEmployeeInput {
+    name: String
+    departmentId: ID
+}
+
+type CreateEmployeePayload {
+    cursor: String
+    node: Employee
+}
+
+input UpdateEmployeeInput {
+    id: ID!
+    name: String
+    departmentId: ID
+}
+
+type UpdateEmployeePayload {
+    cursor: String
+    node: Employee
+}
+
+input DeleteEmployeeInput {
+    id: ID!
+}
+
+type DeleteEmployeePayload {
+    id: ID!
+}

@@ -1,0 +1,10 @@
+query {
+    employees {
+        edges {
+            node {
+                id
+                name
+            }
+        }
+    }
+}
