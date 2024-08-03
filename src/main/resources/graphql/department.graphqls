@@ -1,0 +1,43 @@
+extend type Query {
+    departments: [DepartmentEdge]
+}
+
+extend type Mutation {
+    createDepartment(input: CreateDepartmentInput!): CreateDepartmentPayload
+    updateDepartment(input: UpdateDepartmentInput!): UpdateDepartmentPayload
+    deleteDepartment(input: DeleteDepartmentInput!): DeleteDepartmentPayload
+}
+
+type DepartmentEdge {
+    node: Department
+}
+
+type Department implements Node {
+    id: ID!
+    name: String
+}
+
+input CreateDepartmentInput {
+    name: String
+}
+
+type CreateDepartmentPayload {
+    node: Department
+}
+
+input UpdateDepartmentInput {
+    id: ID!
+    name: String
+}
+
+type UpdateDepartmentPayload {
+    node: Department
+}
+
+input DeleteDepartmentInput {
+    id: ID!
+}
+
+type DeleteDepartmentPayload {
+    id: ID!
+}

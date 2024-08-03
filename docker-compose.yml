@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:13
+    container_name: pg-docker
+    environment:
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: demoDB
+    ports:
+      - "5430:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
+    driver: local

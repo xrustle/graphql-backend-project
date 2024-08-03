@@ -1,0 +1,14 @@
+interface Node {
+    id: ID!
+}
+
+type Query {
+    node(id: ID!): Node
+}
+
+type Mutation {}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
